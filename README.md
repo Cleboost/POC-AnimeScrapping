@@ -31,21 +31,21 @@ The `anime-sama/`, `voiranime/`, and `franime/` folders remain **documented POCs
 | **Anime-Sama** | [`anime-sama/`](anime-sama/) | 5 + intro | [POC-Anime-Sama-Scrapping](https://github.com/Cleboost/POC-Anime-Sama-Scrapping) |
 | **VoirAnime** | [`voiranime/`](voiranime/) | 6 + intro | [POC-VoirAnime-Scrapping](https://github.com/Cleboost/POC-VoirAnime-Scrapping) |
 | **FRAnime** | [`franime/`](franime/) | 7 + intro | [POC-FrAnime-Scrapping](https://github.com/Cleboost/POC-FrAnime-Scrapping) |
+| **Nakanime** | [`nakanime/`](nakanime/) | 6 + intro | — |
 
 ## Shared Pipeline Steps
 
 Every POC follows the same core steps. Additional chapters are added when a platform requires extra resolution layers or provider-specific techniques.
 
-| Step | Chapter title | Anime-Sama | VoirAnime | FRAnime |
-|------|---------------|:----------:|:---------:|:-------:|
-| — | Introduction | ✓ | ✓ | ✓ |
-| 1 | Search Engine Analysis | ✓ | ✓ | ✓ |
-| 2 | Catalog Structure Analysis | ✓ | ✓ | ✓ |
-| 3 | Language Discovery Analysis | ✓ | ✓ | ✓ |
-| 4 | Episode List & Providers Analysis | ✓ | ✓ | ✓ |
-| 5+ | *Platform-specific steps* | Video Stream Extraction | Stream Extraction (HTTP) | Provider URL Resolution |
-| | | | Stream Extraction (Browser) | Watch2 XOR Decryption |
-| | | | | Video Stream Extraction |
+| Step | Chapter title | Anime-Sama | VoirAnime | FRAnime | Nakanime |
+|------|---------------|:----------:|:---------:|:-------:|:--------:|
+| — | Introduction | ✓ | ✓ | ✓ | ✓ |
+| 1 | Search Engine Analysis | ✓ | ✓ | ✓ | ✓ |
+| 2 | Catalog Structure Analysis | ✓ | ✓ | ✓ | ✓ |
+| 3 | Language Discovery Analysis | ✓ | ✓ | ✓ | ✓ |
+| 4 | Episode List & Providers Analysis | ✓ | ✓ | ✓ | ✓ |
+| 5+ | *Platform-specific steps* | Video Stream Extraction | Stream Extraction (HTTP) | Provider URL Resolution | API XOR Decryption |
+| | | | Stream Extraction (Browser) | Watch2 XOR Decryption | Video Stream Extraction |
 
 See each project's README for scripts, pipeline details, and full documentation index.
 
@@ -56,6 +56,7 @@ Lib/          → standalone lib (Bun) — all POCs unified, optimized scraping
 anime-sama/   → poc/, docs/, demo/   (documented POC, isolated scripts)
 voiranime/    → poc/, docs/, demo/   (documented POC, Playwright)
 franime/      → poc/, docs/, demo/   (documented POC, isolated scripts)
+nakanime/     → poc/, docs/, demo/   (documented POC, encrypted API)
 ```
 
 ## Quick Start
@@ -87,6 +88,12 @@ cd voiranime && npm install && node demo/index.js "rezero"
 
 ```bash
 node franime/demo/index.js "rezero"
+```
+
+**Nakanime** (plain Node.js for catalog, Playwright optional for some providers):
+
+```bash
+node nakanime/demo/index.js "naruto"
 ```
 
 ## Disclaimer

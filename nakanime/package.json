@@ -1,0 +1,11 @@
+{
+  "name": "poc-nakanime-scraping",
+  "private": true,
+  "description": "POC for reverse-engineering Nakanime streaming",
+  "scripts": {
+    "demo": "node demo/index.js"
+  },
+  "optionalDependencies": {
+    "playwright": "^1.61.1"
+  }
+}
