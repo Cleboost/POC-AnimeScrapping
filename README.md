@@ -31,6 +31,7 @@ The `anime-sama/`, `voiranime/`, and `franime/` folders remain **documented POCs
 | **Anime-Sama** | [`anime-sama/`](anime-sama/) | 5 + intro | [POC-Anime-Sama-Scrapping](https://github.com/Cleboost/POC-Anime-Sama-Scrapping) |
 | **VoirAnime** | [`voiranime/`](voiranime/) | 6 + intro | [POC-VoirAnime-Scrapping](https://github.com/Cleboost/POC-VoirAnime-Scrapping) |
 | **FRAnime** | [`franime/`](franime/) | 7 + intro | [POC-FrAnime-Scrapping](https://github.com/Cleboost/POC-FrAnime-Scrapping) |
+| **Mugiwara** | [`mugiwara/`](mugiwara/) | 6 + intro | — |
 | **Nakanime** | [`nakanime/`](nakanime/) | 6 + intro | — |
 
 ## Shared Pipeline Steps
@@ -56,6 +57,7 @@ Lib/          → standalone lib (Bun) — all POCs unified, optimized scraping
 anime-sama/   → poc/, docs/, demo/   (documented POC, isolated scripts)
 voiranime/    → poc/, docs/, demo/   (documented POC, Playwright)
 franime/      → poc/, docs/, demo/   (documented POC, isolated scripts)
+mugiwara/     → poc/, docs/, demo/   (documented POC, Next.js RSC parsing)
 nakanime/     → poc/, docs/, demo/   (documented POC, encrypted API)
 ```
 
@@ -88,6 +90,12 @@ cd voiranime && npm install && node demo/index.js "rezero"
 
 ```bash
 node franime/demo/index.js "rezero"
+```
+
+**Mugiwara** (plain Node.js for catalog, Playwright for protected providers):
+
+```bash
+node mugiwara/demo/index.js "naruto"
 ```
 
 **Nakanime** (plain Node.js for catalog, Playwright optional for some providers):

@@ -1,0 +1,11 @@
+{
+  "name": "poc-mugiwara-scraping",
+  "private": true,
+  "description": "POC for reverse-engineering Mugiwara-no Streaming",
+  "scripts": {
+    "demo": "node demo/index.js"
+  },
+  "optionalDependencies": {
+    "playwright": "^1.62.1"
+  }
+}
