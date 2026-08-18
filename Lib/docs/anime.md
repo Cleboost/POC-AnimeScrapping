@@ -20,12 +20,24 @@ Creates an instance. Options affect **Playwright** during `watch()` (browser pro
 |-----------|------|---------|-------------|
 | `options` | `AnimeOptions` | `{}` | Optional settings |
 | `options.headless` | `boolean` | `true` | `true` = Chromium without UI. `false` = visible mode (debug Filemoon, VOE, etc.) |
+| `options.providers` | `Platform[]` | all | Sites to search/watch. Use exported `providers` constants |
 
 ### Example
 
 ```typescript
-const anime = new Anime();                    // headless by default
-const debug = new Anime({ headless: false }); // show browser
+import { Anime, providers } from "./lib/anime-scraping-lib.js";
+
+const anime = new Anime(); // all platforms
+
+const animeSamaOnly = new Anime({
+  providers: [providers.animeSama],
+});
+
+const twoSites = new Anime({
+  providers: [providers.animeSama, providers.franime],
+});
+
+const debug = new Anime({ headless: false });
 ```
 
 ### Returns

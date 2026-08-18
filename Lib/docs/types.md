@@ -26,6 +26,21 @@ Constructor options for `new Anime(…)`.
 | Field | Type | Required | Default | Description |
 |-------|------|----------|---------|-------------|
 | `headless` | `boolean` | no | `true` | Playwright headless mode for `watch()` |
+| `providers` | `Platform[]` | no | all | Platforms to use. Import `providers` for typed keys |
+
+### `providers` export
+
+```typescript
+import { providers } from "anime-scraping-lib";
+
+providers.animeSama  // "anime-sama"
+providers.voiranime  // "voiranime"
+providers.franime    // "franime"
+```
+
+```typescript
+new Anime({ providers: [providers.animeSama, providers.franime] });
+```
 
 ---
 

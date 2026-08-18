@@ -15,17 +15,20 @@ import { applyBestVariant, pickBestSource } from "./provider/m3u8/select.js";
 import type { ProviderContext } from "./provider/types.js";
 import { groupSearchHits, pickDisplayTitle } from "./grouping.js";
 import type { EmbedSource } from "./webanime/types.js";
+import { allPlatforms } from "./providers.js";
 
 export class Anime {
   private session = new Session();
   private headless: boolean;
+  private enabledPlatforms: Platform[];
 
   constructor(options: AnimeOptions = {}) {
     this.headless = options.headless ?? true;
+    this.enabledPlatforms = options.providers ?? allPlatforms;
   }
 
   async search(query: string): Promise<SearchResponse> {
-    const hits = await searchAll(query);
+    const hits = await searchAll(query, this.enabledPlatforms);
     const groups = groupSearchHits(hits);
 
     const results = groups.map((group) => {
@@ -82,6 +85,8 @@ export class Anime {
     const sources: ResolvedSource[] = [];
 
     for (const platformRef of entry.refs) {
+      if (!this.enabledPlatforms.includes(platformRef.platform)) continue;
+
       const adapter = getAdapter(platformRef.platform);
       if (!adapter) continue;
 
@@ -171,7 +176,9 @@ export class Anime {
 
     return {
       id,
-      platforms: entry.refs.map((r) => r.platform),
+      platforms: entry.refs
+        .filter((r) => this.enabledPlatforms.includes(r.platform))
+        .map((r) => r.platform),
       title: entry.title,
       season,
       episode,

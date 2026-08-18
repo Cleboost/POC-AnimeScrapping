@@ -182,9 +182,13 @@ if (watch.best) {
 ## Options
 
 ```typescript
+import { Anime, providers } from "./lib/anime-scraping-lib.js";
+
 new Anime({
-  headless: true,  // Playwright without UI (default). false = visual debug
+  headless: true,
+  providers: [providers.animeSama, providers.franime],
 });
+```
 ```
 
 ## Automated releases

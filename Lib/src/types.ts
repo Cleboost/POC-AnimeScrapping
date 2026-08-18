@@ -65,4 +65,6 @@ export interface WatchResponse {
 
 export interface AnimeOptions {
   headless?: boolean;
+  /** Platforms to search and watch. Defaults to all. */
+  providers?: Platform[];
 }
