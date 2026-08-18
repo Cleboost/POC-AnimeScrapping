@@ -3,12 +3,14 @@ import type { InternalSearchHit } from "./types.js";
 import { animeSamaAdapter } from "./anime-sama/adapter.js";
 import { voiranimeAdapter } from "./voiranime/adapter.js";
 import { franimeAdapter } from "./franime/adapter.js";
+import { nakanimeAdapter } from "./nakanime/adapter.js";
 import type { WebAnimeAdapter } from "./types.js";
 
 export const adapters: WebAnimeAdapter[] = [
   animeSamaAdapter,
   voiranimeAdapter,
   franimeAdapter,
+  nakanimeAdapter,
 ];
 
 export function getAdapter(platform: string): WebAnimeAdapter | undefined {

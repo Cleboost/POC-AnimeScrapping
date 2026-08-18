@@ -37,6 +37,7 @@ import { providers } from "anime-scraping-lib";
 providers.animeSama  // "anime-sama"
 providers.voiranime  // "voiranime"
 providers.franime    // "franime"
+providers.nakanime   // "nakanime"
 ```
 
 ### `hosts` export (video extraction)
@@ -79,7 +80,7 @@ Options for `anime.watch(id, options)`.
 Union of supported platforms.
 
 ```typescript
-type Platform = "anime-sama" | "voiranime" | "franime";
+type Platform = "anime-sama" | "voiranime" | "franime" | "nakanime";
 ```
 
 ---

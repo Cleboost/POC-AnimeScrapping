@@ -22,7 +22,17 @@ export const FRANIME_API_HEADERS = {
 
 export const FRANIME_PROVIDER_REFERER = "https://franime.fr/";
 
-export function refererForPlatform(platform: "anime-sama" | "voiranime" | "franime"): string {
+export const NAKANIME_API_HEADERS = {
+  "User-Agent": USER_AGENT,
+  Accept: "application/json",
+  Referer: "https://nakanime.tv/",
+};
+
+export const NAKANIME_PROVIDER_REFERER = "https://nakanime.tv/";
+
+export function refererForPlatform(
+  platform: "anime-sama" | "voiranime" | "franime" | "nakanime",
+): string {
   switch (platform) {
     case "anime-sama":
       return "https://anime-sama.to/";
@@ -30,5 +40,7 @@ export function refererForPlatform(platform: "anime-sama" | "voiranime" | "frani
       return "https://voir-anime.to/";
     case "franime":
       return FRANIME_PROVIDER_REFERER;
+    case "nakanime":
+      return NAKANIME_PROVIDER_REFERER;
   }
 }

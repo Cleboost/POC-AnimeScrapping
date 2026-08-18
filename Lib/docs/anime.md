@@ -67,7 +67,7 @@ await anime.search("bleach");    // ids 1, 2…
 
 ## `search(query)`
 
-Searches **in parallel** on Anime-Sama, VoirAnime, and FRAnime. Appends results to the session with **unique** incrementing IDs.
+Searches **in parallel** on Anime-Sama, VoirAnime, FRAnime, and Nakanime. Appends results to the session with **unique** incrementing IDs.
 
 ### Parameters
 
@@ -81,7 +81,7 @@ Searches **in parallel** on Anime-Sama, VoirAnime, and FRAnime. Appends results 
 
 ### Behavior
 
-- Aggregates results from all 3 platforms.
+- Aggregates results from all 4 platforms.
 - **Groups** identical entries (same anime on multiple sites → one row, `platforms: ["anime-sama", "franime", …]`).
 - Each entry has a unique `id` on this instance — IDs **keep incrementing** across `search()` calls (no duplicate id 1).
 - **No** stream, embed, or episode page URLs in the response.
@@ -172,3 +172,4 @@ Per-provider extraction errors → in `sources[].error`, not a global throw.
 | **anime-sama** | Match name (`Saison 1`, `Saga 1`) or URL `saison1`, index fallback | Probe `vostfr`, `vf`, etc. |
 | **voiranime** | Ignored (flat episode list) | Ignored (VF/VOSTFR on page) |
 | **franime** | API index 0-based internally (`season 1` → index 0) | `"vostfr"`/`"vo"` → `vo`, `"vf"` → `vf` |
+| **nakanime** | Season number from API (`seasons[].number`) | `"vostfr"` → `VOSTFR`, `"vf"` → `VF`, `"vo"` → `VO`. Fallback to all providers if none match |

@@ -15,7 +15,8 @@ export interface InternalSearchHit {
 export type InternalRef =
   | AnimeSamaRef
   | VoiranimeRef
-  | FranimeRef;
+  | FranimeRef
+  | NakanimeRef;
 
 export interface AnimeSamaRef {
   platform: "anime-sama";
@@ -30,6 +31,11 @@ export interface VoiranimeRef {
 export interface FranimeRef {
   platform: "franime";
   animeId: string;
+}
+
+export interface NakanimeRef {
+  platform: "nakanime";
+  animeId: number;
 }
 
 export interface EmbedSource {

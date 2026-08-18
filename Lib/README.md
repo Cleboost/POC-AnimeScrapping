@@ -1,6 +1,6 @@
 # anime-scraping-lib
 
-Library to scrape **Anime-Sama**, **VoirAnime**, and **FRAnime** from a single API.
+Library to scrape **Anime-Sama**, **VoirAnime**, **FRAnime**, and **Nakanime** from a single API.
 
 Not on npm — download the bundle from **GitHub Releases** and add it to your project.
 
@@ -12,7 +12,7 @@ An `Anime` class with two main methods:
 
 | Method | What it does |
 |--------|----------------|
-| `search(query)` | Searches all 3 sites in parallel. Returns titles, posters, IDs… **no** stream URLs. |
+| `search(query)` | Searches all 4 sites in parallel. Returns titles, posters, IDs… **no** stream URLs. |
 | `watch(id, options)` | For a search result: fetches **all** video sources, parses M3U8, picks **best quality**. |
 
 IDs (`1`, `2`, `3`…) are kept **in memory** on the `Anime` instance. Each `search()` adds **new** IDs (never reused). `clearSession()` wipes everything.
@@ -104,7 +104,7 @@ Each `results[i]`:
 {
   id: number;
   title: string;
-  platforms: ("anime-sama" | "voiranime" | "franime")[];
+  platforms: ("anime-sama" | "voiranime" | "franime" | "nakanime")[];
   subtitle?: string;
   poster?: string;
   titleOriginal?: string;

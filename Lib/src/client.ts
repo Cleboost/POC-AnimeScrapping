@@ -47,18 +47,21 @@ export class Anime {
         })),
       });
 
-      const franimeHit = group.find((h) => h.ref.platform === "franime");
+      const metadataHit = group.find(
+        (h) => h.ref.platform === "franime" || h.ref.platform === "nakanime",
+      );
 
       return {
         id,
         title,
         platforms,
         subtitle: group.find((h) => h.subtitle)?.subtitle,
-        titleOriginal: franimeHit?.titleOriginal ?? group.find((h) => h.titleOriginal)?.titleOriginal,
+        titleOriginal:
+          metadataHit?.titleOriginal ?? group.find((h) => h.titleOriginal)?.titleOriginal,
         poster: group.find((h) => h.poster)?.poster,
-        format: franimeHit?.format ?? group.find((h) => h.format)?.format,
-        status: franimeHit?.status ?? group.find((h) => h.status)?.status,
-        note: franimeHit?.note ?? group.find((h) => h.note)?.note,
+        format: metadataHit?.format ?? group.find((h) => h.format)?.format,
+        status: metadataHit?.status ?? group.find((h) => h.status)?.status,
+        note: metadataHit?.note ?? group.find((h) => h.note)?.note,
       };
     });
 
