@@ -20,10 +20,12 @@ import { allPlatforms } from "./providers.js";
 export class Anime {
   private session = new Session();
   private headless: boolean;
+  private allowBrowser: boolean;
   private enabledPlatforms: Platform[];
 
   constructor(options: AnimeOptions = {}) {
     this.headless = options.headless ?? true;
+    this.allowBrowser = options.allowBrowser ?? true;
     this.enabledPlatforms = options.providers ?? allPlatforms;
   }
 
@@ -114,6 +116,7 @@ export class Anime {
       const ctx: ProviderContext = {
         referer,
         headless: this.headless,
+        allowBrowser: this.allowBrowser,
       };
 
       for (const embed of embeds) {
@@ -132,7 +135,9 @@ export class Anime {
               embedUrl: embed.embedUrl,
               streamUrl: "",
               quality: { label: "unknown", width: null, height: null, bandwidth: null },
-              error: "Could not extract stream URL",
+              error: this.allowBrowser
+                ? "Could not extract stream URL"
+                : "Browser extraction disabled (allowBrowser: false)",
             });
             continue;
           }

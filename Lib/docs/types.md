@@ -25,10 +25,11 @@ Constructor options for `new Anime(…)`.
 
 | Field | Type | Required | Default | Description |
 |-------|------|----------|---------|-------------|
-| `headless` | `boolean` | no | `true` | Playwright headless mode for `watch()` |
+| `headless` | `boolean` | no | `true` | Playwright headless when `allowBrowser` is true |
 | `providers` | `Platform[]` | no | all | Platforms to use. Import `providers` for typed keys |
+| `allowBrowser` | `boolean` | no | `true` | `false` = skip Playwright (HTTP hosts only) |
 
-### `providers` export
+### `providers` export (sites)
 
 ```typescript
 import { providers } from "anime-scraping-lib";
@@ -38,8 +39,25 @@ providers.voiranime  // "voiranime"
 providers.franime    // "franime"
 ```
 
+### `hosts` export (video extraction)
+
 ```typescript
-new Anime({ providers: [providers.animeSama, providers.franime] });
+import { hosts, httpHosts, browserHosts, hostNeedsBrowser } from "anime-scraping-lib";
+
+hosts.vidmoly   // HTTP
+hosts.sibnet    // HTTP
+hosts.sendvid   // HTTP
+hosts.filemoon  // requires Playwright
+
+httpHosts       // ["vidmoly", "sibnet", "sendvid"]
+browserHosts    // ["filemoon"]
+```
+
+Set `allowBrowser: false` to never open a browser — only `httpHosts` can succeed.
+
+```typescript
+new Anime({ allowBrowser: false });
+new Anime({ providers: [providers.animeSama], allowBrowser: false });
 ```
 
 ---

@@ -186,6 +186,7 @@ import { Anime, providers } from "./lib/anime-scraping-lib.js";
 
 new Anime({
   headless: true,
+  allowBrowser: false, // HTTP-only — no Chromium
   providers: [providers.animeSama, providers.franime],
 });
 ```

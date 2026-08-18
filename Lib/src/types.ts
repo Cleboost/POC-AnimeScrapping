@@ -67,4 +67,9 @@ export interface AnimeOptions {
   headless?: boolean;
   /** Platforms to search and watch. Defaults to all. */
   providers?: Platform[];
+  /**
+   * Allow Playwright-based stream extraction (Filemoon, VOE, fallbacks).
+   * `false` = HTTP-only (Vidmoly, Sibnet, Sendvid). No browser launched.
+   */
+  allowBrowser?: boolean;
 }

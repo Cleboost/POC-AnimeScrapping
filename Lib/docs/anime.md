@@ -19,25 +19,30 @@ Creates an instance. Options affect **Playwright** during `watch()` (browser pro
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `options` | `AnimeOptions` | `{}` | Optional settings |
-| `options.headless` | `boolean` | `true` | `true` = Chromium without UI. `false` = visible mode (debug Filemoon, VOE, etc.) |
+| `options.headless` | `boolean` | `true` | When browser is allowed: `true` = no UI, `false` = visible Chromium |
 | `options.providers` | `Platform[]` | all | Sites to search/watch. Use exported `providers` constants |
+| `options.allowBrowser` | `boolean` | `true` | `false` = HTTP-only extraction, never launch Playwright |
 
 ### Example
 
 ```typescript
-import { Anime, providers } from "./lib/anime-scraping-lib.js";
+import { Anime, providers, hosts, httpHosts, browserHosts } from "./lib/anime-scraping-lib.js";
 
-const anime = new Anime(); // all platforms
+const anime = new Anime(); // all platforms, browser allowed
 
 const animeSamaOnly = new Anime({
   providers: [providers.animeSama],
 });
 
-const twoSites = new Anime({
-  providers: [providers.animeSama, providers.franime],
+// No browser — Vidmoly / Sibnet / Sendvid only (skips Filemoon, VOE, etc.)
+const httpOnly = new Anime({
+  allowBrowser: false,
 });
 
-const debug = new Anime({ headless: false });
+// Debug visible browser when extraction needs Playwright
+const debug = new Anime({ headless: false, allowBrowser: true });
+
+// hosts.vidmoly, hosts.filemoon — see httpHosts vs browserHosts
 ```
 
 ### Returns
