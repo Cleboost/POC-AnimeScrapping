@@ -30,8 +30,16 @@ export const NAKANIME_API_HEADERS = {
 
 export const NAKANIME_PROVIDER_REFERER = "https://nakanime.tv/";
 
+export const MUGIWARA_API_HEADERS = {
+  "User-Agent": USER_AGENT,
+  Accept: "application/json, text/html, */*",
+  Referer: "https://www.mugiwara-no-streaming.com/",
+};
+
+export const MUGIWARA_PROVIDER_REFERER = "https://www.mugiwara-no-streaming.com/";
+
 export function refererForPlatform(
-  platform: "anime-sama" | "voiranime" | "franime" | "nakanime",
+  platform: "anime-sama" | "voiranime" | "franime" | "nakanime" | "mugiwara",
 ): string {
   switch (platform) {
     case "anime-sama":
@@ -42,5 +50,7 @@ export function refererForPlatform(
       return FRANIME_PROVIDER_REFERER;
     case "nakanime":
       return NAKANIME_PROVIDER_REFERER;
+    case "mugiwara":
+      return MUGIWARA_PROVIDER_REFERER;
   }
 }

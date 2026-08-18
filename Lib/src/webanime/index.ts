@@ -4,6 +4,7 @@ import { animeSamaAdapter } from "./anime-sama/adapter.js";
 import { voiranimeAdapter } from "./voiranime/adapter.js";
 import { franimeAdapter } from "./franime/adapter.js";
 import { nakanimeAdapter } from "./nakanime/adapter.js";
+import { mugiwaraAdapter } from "./mugiwara/adapter.js";
 import type { WebAnimeAdapter } from "./types.js";
 
 export const adapters: WebAnimeAdapter[] = [
@@ -11,6 +12,7 @@ export const adapters: WebAnimeAdapter[] = [
   voiranimeAdapter,
   franimeAdapter,
   nakanimeAdapter,
+  mugiwaraAdapter,
 ];
 
 export function getAdapter(platform: string): WebAnimeAdapter | undefined {

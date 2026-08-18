@@ -28,7 +28,7 @@ export async function extractStream(
     return null;
   }
 
-  if (lower.includes("vidmoly")) {
+  if (lower.includes("vidmoly") || lower.includes("ansembed")) {
     try {
       const result = await extractVidmoly(embedUrl, ctx);
       if (result) return result;

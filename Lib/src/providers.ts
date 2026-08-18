@@ -6,6 +6,7 @@ export const providers = {
   voiranime: "voiranime",
   franime: "franime",
   nakanime: "nakanime",
+  mugiwara: "mugiwara",
 } as const satisfies Record<string, Platform>;
 
 export type ProviderKey = keyof typeof providers;
@@ -15,6 +16,7 @@ export const allPlatforms: Platform[] = [
   providers.voiranime,
   providers.franime,
   providers.nakanime,
+  providers.mugiwara,
 ];
 
 /**

@@ -16,7 +16,8 @@ export type InternalRef =
   | AnimeSamaRef
   | VoiranimeRef
   | FranimeRef
-  | NakanimeRef;
+  | NakanimeRef
+  | MugiwaraRef;
 
 export interface AnimeSamaRef {
   platform: "anime-sama";
@@ -36,6 +37,11 @@ export interface FranimeRef {
 export interface NakanimeRef {
   platform: "nakanime";
   animeId: number;
+}
+
+export interface MugiwaraRef {
+  platform: "mugiwara";
+  slug: string;
 }
 
 export interface EmbedSource {

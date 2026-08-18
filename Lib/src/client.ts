@@ -48,7 +48,10 @@ export class Anime {
       });
 
       const metadataHit = group.find(
-        (h) => h.ref.platform === "franime" || h.ref.platform === "nakanime",
+        (h) =>
+          h.ref.platform === "franime" ||
+          h.ref.platform === "nakanime" ||
+          h.ref.platform === "mugiwara",
       );
 
       return {

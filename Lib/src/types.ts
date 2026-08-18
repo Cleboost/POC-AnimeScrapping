@@ -1,4 +1,4 @@
-export type Platform = "anime-sama" | "voiranime" | "franime" | "nakanime";
+export type Platform = "anime-sama" | "voiranime" | "franime" | "nakanime" | "mugiwara";
 
 export type StreamType = "hls" | "mp4";
 
