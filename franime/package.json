@@ -1,0 +1,29 @@
+{
+  "name": "poc-franime-scrapping",
+  "version": "1.0.0",
+  "description": "This repository is a **Research and Proof of Concept (POC)** project focused on analyzing and scraping anime content from the French platform **Anime-Sama**.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cleboost/POC-Anime-Sama-Scrapping.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Cleboost/POC-Anime-Sama-Scrapping/issues"
+  },
+  "homepage": "https://github.com/Cleboost/POC-Anime-Sama-Scrapping#readme",
+  "dependencies": {
+    "playwright": "^1.61.1",
+    "playwright-extra": "^4.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}
