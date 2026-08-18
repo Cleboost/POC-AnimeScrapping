@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - "Lib/**"
+      - ".github/workflows/lib-release.yml"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -29,6 +31,10 @@ jobs:
 
       - name: Build release bundle
         run: bun run build:release
+
+      - name: Verify release artifacts
+        run: |
+          ls -la dist/anime-scraping-lib.js dist/anime-scraping-lib.d.ts
 
       - name: Compute build tag
         id: build
@@ -59,8 +65,8 @@ jobs:
             bun add playwright   # required at runtime for browser providers
             ```
           files: |
-            dist/anime-scraping-lib.js
-            dist/anime-scraping-lib.d.ts
+            Lib/dist/anime-scraping-lib.js
+            Lib/dist/anime-scraping-lib.d.ts
           draft: false
           prerelease: false
           make_latest: true
