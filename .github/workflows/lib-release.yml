@@ -1,0 +1,66 @@
+name: Lib Release
+
+on:
+  push:
+    paths:
+      - "Lib/**"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Lib
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build release bundle
+        run: bun run build:release
+
+      - name: Compute build tag
+        id: build
+        run: |
+          SHORT_SHA="${GITHUB_SHA::7}"
+          BUILD_DATE="$(date -u +%Y%m%d)"
+          BUILD_TIME="$(date -u +%H%M%S)"
+          TAG="lib-${BUILD_DATE}-${BUILD_TIME}-${SHORT_SHA}"
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "short_sha=${SHORT_SHA}" >> "$GITHUB_OUTPUT"
+          echo "build_date=${BUILD_DATE}" >> "$GITHUB_OUTPUT"
+          echo "build_time=${BUILD_TIME}" >> "$GITHUB_OUTPUT"
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.build.outputs.tag }}
+          name: "Lib ${{ steps.build.outputs.build_date }}.${{ steps.build.outputs.build_time }} (${{ steps.build.outputs.short_sha }})"
+          body: |
+            Automated Lib build from commit `${{ github.sha }}`.
+
+            | Artifact | Description |
+            |----------|-------------|
+            | `anime-scraping-lib.js` | Single minified ESM bundle (`playwright` external) |
+            | `anime-scraping-lib.d.ts` | Type declarations |
+
+            ```bash
+            bun add playwright   # required at runtime for browser providers
+            ```
+          files: |
+            dist/anime-scraping-lib.js
+            dist/anime-scraping-lib.d.ts
+          draft: false
+          prerelease: false
+          make_latest: true

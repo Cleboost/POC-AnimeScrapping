@@ -4,7 +4,27 @@ Monorepo gathering all reverse-engineering / scraping POCs for French anime stre
 
 Each subdirectory was previously a standalone repository, with its own docs and scripts.
 
-## Projects
+## Standalone library — [`Lib/`](Lib/)
+
+**[`Lib/`](Lib/)** bundles **all POCs** into one autonomous TypeScript library: a single API to scrape Anime-Sama, VoirAnime, and FRAnime in parallel, without running POC scripts one by one.
+
+- **Multi-scrap** — search all 3 platforms in one call
+- **Full pipeline** — `search()` → `watch(id)` with all sources and best quality (M3U8)
+- **Optimized bundle** — one minified JS file + `.d.ts`, available on **GitHub Releases** (not on npm)
+
+```typescript
+import { Anime } from "./lib/anime-scraping-lib.js";
+
+const anime = new Anime({ headless: true });
+const { results } = await anime.search("one piece");
+const { best } = await anime.watch(1, { season: 1, episode: 1, lang: "vostfr" });
+```
+
+→ Manual install, playground, and full API: **[`Lib/README.md`](Lib/README.md)**
+
+The `anime-sama/`, `voiranime/`, and `franime/` folders remain **documented POCs** (isolated scripts, reverse-engineering chapters). The library is the unified **production-ready** version — try it via `Lib/playground/`.
+
+## Projects (documented POCs)
 
 | Platform | Directory | Chapters | Former repo |
 |----------|-----------|----------|-------------|
@@ -32,12 +52,24 @@ See each project's README for scripts, pipeline details, and full documentation 
 ## Structure
 
 ```
-anime-sama/   → poc/, docs/, demo/   (no npm dependencies)
-voiranime/    → poc/, docs/, demo/   (playwright)
-franime/      → poc/, docs/, demo/   (plain Node.js)
+Lib/          → standalone lib (Bun) — all POCs unified, optimized scraping
+anime-sama/   → poc/, docs/, demo/   (documented POC, isolated scripts)
+voiranime/    → poc/, docs/, demo/   (documented POC, Playwright)
+franime/      → poc/, docs/, demo/   (documented POC, isolated scripts)
 ```
 
 ## Quick Start
+
+**Lib (recommended)** — unified multi-platform scraping:
+
+```bash
+# From a GitHub Release: copy anime-scraping-lib.js + .d.ts into your project
+# See Lib/README.md
+
+cd Lib && bun install && bun run start search "one piece"
+```
+
+**Individual POCs** — to study one platform in depth:
 
 **Anime-Sama** (plain Node.js, no `npm install` required):
 
