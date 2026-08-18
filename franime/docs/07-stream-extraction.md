@@ -25,8 +25,8 @@ Sibnet serves video as a signed `.mp4` on their CDN. The URL is time-limited (th
 
 ### Extraction — two HTTP requests, no browser
 
-1. **Fetch the embed page** (`shell.php?videoid=...`): HTML contains a JW Player `src:` with a path like `/v/<token>/<videoid>.mp4`.
-2. **Follow the redirect**: `GET https://video.sibnet.ru/v/<token>/<videoid>.mp4` returns a `302` to the real CDN URL.
+1. **Fetch the embed page** (`shell.php?videoid=...`): HTML contains a JW Player path, often as `player.src([{src: "/v/<token>/<videoid>.mp4"}])` or legacy `'file':'/v/...'`.
+2. **Follow the redirect**: `GET https://video.sibnet.ru/v/<token>/<videoid>.mp4` with `Referer` set to the shell URL returns a `302` to the real CDN URL.
 
 ```
 GET https://video.sibnet.ru/v/daa4d85ca35bf1a6d5b6221e23bab411/4956170.mp4

@@ -7,7 +7,7 @@ Research and Proof of Concept focused on reverse-engineering **FRAnime** (`frani
 ## Purpose
 
 - **Catalog Research**: Explore how anime, seasons, languages, and providers are indexed via REST API.
-- **Scraping POC**: Lightweight scripts with offline XOR decryption (no browser for most steps).
+- **Scraping POC**: Lightweight scripts with offline XOR decryption — zero browser, zero npm deps.
 - **Stream Analysis**: Investigate how streams from Vidmoly, Sibnet, Sendvid, Filemoon are embedded and extracted.
 
 ## Documentation
@@ -50,10 +50,9 @@ An integrated demo is available at `demo/index.js`.
 
 ## Quick Start
 
-Most steps need only plain Node.js. Playwright is listed as a dependency but not required for the core pipeline.
+Most steps need only plain Node.js — no npm dependencies.
 
 ```bash
-npm install
 node demo/index.js "rezero"
 ```
 

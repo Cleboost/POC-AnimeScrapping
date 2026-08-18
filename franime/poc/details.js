@@ -3,25 +3,17 @@
  * Returns seasons, episodes, available languages and players
  */
 
-const HEADERS = {
-  "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-  "Accept": "application/json, text/plain, */*",
-  "Origin": "https://franime.fr",
-  "Referer": "https://franime.fr/",
-  "Sec-Fetch-Dest": "empty",
-  "Sec-Fetch-Mode": "cors",
-  "Sec-Fetch-Site": "same-site",
-};
+const { API_HEADERS } = require("./headers");
 
 async function getAnimeDetails(animeId) {
   const response = await fetch(`https://api.franime.fr/api/anime-by-id/${animeId}`, {
-    headers: HEADERS,
+    headers: API_HEADERS,
   });
   const anime = await response.json();
 
   return {
     id: anime.id,
-    title: anime.titles?.en || anime.titleO,
+    title: anime.title || anime.titles?.en || anime.titleO,
     titleO: anime.titleO,
     saisons: anime.saisons.map((saison, saisonIndex) => ({
       index: saisonIndex,
@@ -38,6 +30,9 @@ async function getAnimeDetails(animeId) {
   };
 }
 
-// Direct test
-const animeId = process.argv[2] || "517396000974";
-getAnimeDetails(animeId).then((res) => console.log(JSON.stringify(res, null, 2)));
+if (require.main === module) {
+  const animeId = process.argv[2] || "517396000974";
+  getAnimeDetails(animeId).then((res) => console.log(JSON.stringify(res, null, 2)));
+}
+
+module.exports = { getAnimeDetails };

@@ -34,7 +34,7 @@ See each project's README for scripts, pipeline details, and full documentation 
 ```
 anime-sama/   → poc/, docs/, demo/   (no npm dependencies)
 voiranime/    → poc/, docs/, demo/   (playwright)
-franime/      → poc/, docs/, demo/   (playwright)
+franime/      → poc/, docs/, demo/   (plain Node.js)
 ```
 
 ## Quick Start
@@ -45,11 +45,16 @@ franime/      → poc/, docs/, demo/   (playwright)
 node anime-sama/poc/search.js "one piece"
 ```
 
-**VoirAnime / FRAnime** (requires Playwright for protected providers):
+**VoirAnime** (requires Playwright for protected providers):
 
 ```bash
 cd voiranime && npm install && node demo/index.js "rezero"
-cd franime && npm install && node demo/index.js "one piece"
+```
+
+**FRAnime** (plain Node.js):
+
+```bash
+node franime/demo/index.js "rezero"
 ```
 
 ## Disclaimer
